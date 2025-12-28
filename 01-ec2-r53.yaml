@@ -6,11 +6,12 @@
     sg_id: sg-0d750c4d0dc1c7758
     zone_id: "Z0398365AXZ3ME1MH9EB"
     domain_name: "daws86s.help"
-    instances:
-    - mongodb
-    - redis
-    - mysql
-    - rabbitmQ
+    # {we can instaces through command line using -e}
+    # instances:
+    # - mongodb
+    # - redis
+    # - mysql
+    # - rabbitmQ
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
