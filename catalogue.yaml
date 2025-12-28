@@ -62,16 +62,22 @@
   - name: print catalogue output 
     ansible.builtin.debug:
      msg: "{{ catalogue_output }}"
+    when: "{{ catalogue_output .stdout | int < 0}}"
   
-  # - name: reload the service
-  #   ansible.builtin.systemd_service:
-  #     daemon_reload: true
+  - name: load products
+    anisible.built.shell: mongosh --host mongodb.daws86s.help </app/db/master-data.js
+  
+  - name: reload the service
+    ansible.builtin.systemd_service:
+      daemon_reload: true
 
-  # - name: start and enable  the service
-  #   ansible.builtin.service:
-  #      name: catalogue
-  #      state: started
-  #      enabled: yes  
+  - name: start and enable  the service
+    ansible.builtin.service:
+       name: catalogue
+       state: started
+       enabled: yes  
+
+  
   
  
 
