@@ -8,6 +8,9 @@
     domain_name: "daws86s.help"
     instances:
     - mongodb
+    - redis
+    - mysql
+    - rabbitmQ
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
@@ -46,13 +49,7 @@
       overwrite: true
     loop: "{{ ec2_output.results }}"
   
-  # - name: terminate instance
-  #   amazon.aws.ec2_instance:
-  #      state: absent
-  #      filters: 
-  #         instance-state-name: running
-  
-  
+ 
 
 
   
