@@ -11,7 +11,7 @@
   tasks:
   - name: craete ec2 instance
     amazon.aws.ec2_instance:
-      name: "ec2-instance"
+      name: "{{ item }}"
       instance_type: t3.micro
       image_id: "{{ ami_id }}"
       security_group: "{{ sg_id }}"
