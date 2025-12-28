@@ -56,7 +56,7 @@
       state: present
 
   - name: connect to mongodb client
-    ansible.builtin.command: mongosh mongodb.daws86s.help --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+    ansible.builtin.shell: mongosh mongodb.daws86s.help --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
     register: catalogue_output 
   
   - name: print catalogue output 
