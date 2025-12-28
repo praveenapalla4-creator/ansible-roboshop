@@ -20,9 +20,9 @@
     loop: "{{ instances }}"
     register: ec2_output
 
-  # - name: print the ec2_output
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output }}"
+  - name: print the ec2_output
+    ansible.builtin.debug:
+      msg: "{{ ec2_output }}"
 
   # - name: print public ip adress
   #   ansible.builtin.debug:
@@ -45,6 +45,12 @@
       value: "{{ item.instances[0].public_ip_address }}"
       overwrite: true
     loop: "{{ ec2_output.results }}"
+  
+  # - name: terminate instance
+  #   amazon.aws.ec2_instance:
+  #      state: absent
+  #      filters: 
+  #         instance-state-name: running
   
   
 
