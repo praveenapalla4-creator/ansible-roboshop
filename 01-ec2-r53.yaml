@@ -1,0 +1,27 @@
+- name:  carete ec2 and r53
+  hosts: local
+  connection: local
+  vars: 
+    ami_id: ami-09c813fb71547fc4f
+    sg_id: sg-0d750c4d0dc1c7758
+    zone_id: Z0398365AXZ3ME1MH9EB
+    domain_name: daws86s.help
+    instances:
+    - mongodb
+  tasks:
+  - name: craete ec2 instance
+    amazon.aws.ec2_instance:
+      name: "ec2-instance"
+      instance_type: t3.micro
+      image_id: "{{ ami_id }}"
+      security_group: "{{ sg_id }}"
+      tags:
+        Name: "{{ item }}"
+      loop: "{{ instances }}"
+      register: ec2-output
+  - name: print the ec2-output
+    ansible.builtin.debug:
+      msg: "{{ ec2-output}}"
+
+  
+
