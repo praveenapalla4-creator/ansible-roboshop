@@ -62,11 +62,12 @@
   - name: print catalogue output 
     ansible.builtin.debug:
      msg: "{{ catalogue_output }}"
-    when: "{{ catalogue_output .stdout | int < 0}}"
+    
   
   - name: load products
     anisible.built.shell: mongosh --host mongodb.daws86s.help </app/db/master-data.js
-  
+    when: "{{ catalogue_output .stdout | int < 0}}"
+    
   - name: reload the service
     ansible.builtin.systemd_service:
       daemon_reload: true
