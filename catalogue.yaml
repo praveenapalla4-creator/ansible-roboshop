@@ -64,9 +64,9 @@
      msg: "{{ catalogue_output }}"
     
   
-  - name: load products
+  - name: load products in to mongodb
     anisible.built.shell: mongosh --host mongodb.daws86s.help </app/db/master-data.js
-    when: "{{ catalogue_output .stdout | int < 0 }}"
+    when: catalogue_output .stdout | int < 0 
 
   # - name: reload the service
   #   ansible.builtin.systemd_service:
