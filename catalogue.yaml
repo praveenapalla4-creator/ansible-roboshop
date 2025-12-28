@@ -75,8 +75,10 @@
   - name: start and enable  the service
     ansible.builtin.service:
        name: catalogue
+       enabled: yes 
        state: started
-       enabled: yes  
+       daemon_reload: true
+        
 
   
   
