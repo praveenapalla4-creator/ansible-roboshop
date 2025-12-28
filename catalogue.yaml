@@ -5,7 +5,7 @@
   - name: disable nodejs previous version
     ansible.builtin.command: dnf module disable nodejs -y
   
-  - name: disable redis enabled version
+  - name: enable required version
     ansible.builtin.command: dnf module enable nodejs:20 -y
   
   - name: install nodejs 
@@ -36,6 +36,7 @@
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
+
   - name: install npm 
     community.general.npm:
       path: /app
@@ -56,7 +57,7 @@
       state: present
 
   - name: connect to mongodb client
-    ansible.builtin.shell: mongosh mongodb.daws86s.help --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+    ansible.builtin.command: mongosh mongodb.daws86s.help --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
     register: catalogue_output 
   
   - name: print catalogue output 
