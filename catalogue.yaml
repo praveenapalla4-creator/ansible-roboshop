@@ -1,5 +1,5 @@
-- name: catalo server
-  hosts: nodejs
+- name: catalogue server
+  hosts: catalogue
   become: yes
   tasks:
   - name: disable nodejs previous version
