@@ -20,11 +20,21 @@
       system: true
       shell: /sbin/nologin
       home: /app
+  # safe to remove the directory, because when we run 2 time it will consider the previously downloaded file though the file have new chnages it doesnot download new one
+  - name: remove app directory if exits
+    ansible.builtin.file:
+      path: /app
+      state: absent
 
   - name: craete app directory
     ansible.builtin.file:
      path: /app
      state: directory
+  
+  - name: Delete the previously downloaded file
+    ansible.builtin.file:
+      path: /tmp/catalogue.zip
+      state: absent
 
   - name: download the application code
     ansible.builtin.get_url:
